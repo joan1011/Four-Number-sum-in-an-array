@@ -1,0 +1,20 @@
+def fourNumberSum(array, targetSum):
+    # Write your code here.
+    allPairSums = {}
+    quadruplets = []
+    for i in range(1,len(array) - 1):
+        for j in range(i+1, len(array)):
+            currentsum = array[i] + array[j]
+            difference = targetSum - currentsum
+            if difference in allPairSums:
+                for pair in allPairSums[difference]:
+                    quadruplets.append(pair + [array[i],array[j]])
+        for k in range(0,i):
+            currentsum = array[i] + array [k]
+            if currentsum not in allPairSums:
+                allPairSums[currentsum] = [[array[k],array[i]]]
+            else:
+                allPairSums[currentsum].append([array[k], array[i]])
+    return quadruplets
+    
+fourNumberSum([-1, 22, 18, 4, 7, 11, 2, -5, -3], 30)
